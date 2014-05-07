@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-  .module('quarakWebApp', [
+  .module('quarak', [
     'ngCookies',
     'ngResource',
     'ngSanitize',
