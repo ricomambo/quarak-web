@@ -1,5 +1,67 @@
-<ul>
-  <li ng-repeat="expense in expenses">
-    {{expense.category}}
-  </li>
-</ul>
+<h1 class="page-header">Expenses</h1>
+
+<form id="expense-form" ng-submit="save(activeExpense)">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Category</th>
+        <th>Provider</th>
+        <th>Amount</th>
+        <th>Payer</th>
+        <th>Comments</th>
+        <th>Created at</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <input 
+            placeholder="Date" 
+            ng-model="activeExpense.date"
+            autofocus>
+        </td>
+        <td>
+          <input 
+            placeholder="Category"
+            ng-model="activeExpense.category">
+          
+        </td>
+        <td>
+          <input 
+            placeholder="Provider"
+            ng-model="activeExpense.provider">
+        </td>
+        <td>
+          <input 
+            placeholder="Amount"
+            ng-model="activeExpense.amount">
+        </td>
+        <td>
+          <input 
+            placeholder="Payer"
+            ng-model="activeExpense.payer">
+        </td>
+        <td>
+          <input 
+            placeholder="Comments"
+            ng-model="activeExpense.comments">
+        </td>
+        <td>
+          <button class="btn btn-primary" type="submit">Save</button>
+        </td>
+      </tr>
+    </tbody>
+    <tbody>
+      <tr ng-repeat="expense in expenses | orderBy:['-date', '-id']">
+        <td>{{expense.date}}</td>
+        <td>{{expense.category}}</td>
+        <td>{{expense.provider}}</td>
+        <td>{{expense.amount}}</td>
+        <td>{{expense.payer}}</td>
+        <td>{{expense.comments}}</td>
+        <td><a href="" ng-click="remove(expense)"><span class="glyphicon glyphicon-remove"></span></a></td>
+      </tr>
+    </tbody>
+  </table>
+</form>
