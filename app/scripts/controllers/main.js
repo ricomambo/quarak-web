@@ -1,10 +1,5 @@
 'use strict';
 
-angular.module('quarakWebApp')
+angular.module('quarak')
   .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
   });
