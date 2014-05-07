@@ -1,6 +1,14 @@
 'use strict';
 
-angular.module('quarakWebApp')
+angular.module('quarak')
   .factory('Expense', function Expense($resource) {
-    return $resource('/api/expenses/:id', {id: '@id'});
+    var Expense = $resource(
+      '/api/expenses/:id.json',
+      { id: '@id' },
+      { update: {
+        method: 'PUT' }
+      }
+    );
+
+    return Expense;
   });
