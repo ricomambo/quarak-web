@@ -1,16 +1,15 @@
 <h1 class="page-header">Expenses</h1>
 
-<form id="expense-form" ng-submit="save(activeExpense)">
+<form id="expense-form" name="expenseForm" ng-submit="save(activeExpense)">
   <table class="table">
     <thead>
       <tr>
         <th>Date</th>
-        <th>Category</th>
         <th>Provider</th>
         <th>Amount</th>
         <th>Payer</th>
         <th>Comments</th>
-        <th>Created at</th>
+        <th>Category</th>
       </tr>
     </thead>
     <tbody>
@@ -19,47 +18,52 @@
           <input 
             placeholder="Date" 
             ng-model="activeExpense.date"
-            autofocus>
-        </td>
-        <td>
-          <input 
-            placeholder="Category"
-            ng-model="activeExpense.category">
-          
+            required>
         </td>
         <td>
           <input 
             placeholder="Provider"
-            ng-model="activeExpense.provider">
+            ng-model="activeExpense.provider"
+            autofocus
+            required>
         </td>
         <td>
           <input 
             placeholder="Amount"
-            ng-model="activeExpense.amount">
+            ng-model="activeExpense.amount"
+            required>
         </td>
         <td>
           <input 
             placeholder="Payer"
-            ng-model="activeExpense.payer">
+            ng-model="activeExpense.payer"
+            required>
         </td>
         <td>
           <input 
             placeholder="Comments"
-            ng-model="activeExpense.comments">
+            ng-model="activeExpense.comments"
+            required>
         </td>
         <td>
-          <button class="btn btn-primary" type="submit">Save</button>
+          <input 
+            placeholder="Category"
+            ng-model="activeExpense.category"
+            required>
+        </td>
+        <td>
+          <button class="btn btn-primary" type="submit" ng-disabled="expenseForm.$invalid">Save</button>
         </td>
       </tr>
     </tbody>
     <tbody>
       <tr ng-repeat="expense in expenses | orderBy:['-date', '-id']">
         <td>{{expense.date}}</td>
-        <td>{{expense.category}}</td>
         <td>{{expense.provider}}</td>
         <td>{{expense.amount}}</td>
         <td>{{expense.payer}}</td>
         <td>{{expense.comments}}</td>
+        <td>{{expense.category}}</td>
         <td><a href="" ng-click="remove(expense)"><span class="glyphicon glyphicon-remove"></span></a></td>
       </tr>
     </tbody>
