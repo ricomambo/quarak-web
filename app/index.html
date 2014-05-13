@@ -17,36 +17,66 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="quarak">
+  <body ng-app="quarak" ng-cloak>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+    <div ng-controller="MainCtrl">
 
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Quarak</a>
+      <ng-switch on="currentUser.signedIn" ng-animate="'animate'">
+
+        <div ng-switch-when="false" class="no-authenticated" ng-animate="'animate'">
+
+          <div class="container">
+
+            <form class="form-signin" role="form" ng-submit="signIn(user)">
+              <h2 class="form-signin-heading">Please sign in</h2>
+              <input type="email" class="form-control" placeholder="Email address" required="" autofocus ng-model="user.email" name="user_email">
+              <input type="password" class="form-control" placeholder="Password" required="" ng-model="user.password" name="user_password">
+              <label class="checkbox">
+                <input type="checkbox" value="remember-me" ng-model="user.remember"> Remember me
+              </label>
+              <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            </form>
+
+          </div>
+
         </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="#expenses">Expenses</a></li>
-          </ul>
+
+        <div ng-switch-when="true" class="authenticated" ng-animate="'animate'">
+
+          <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Quarak</a>
+              </div>
+              <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">{{currentUser.email}}</a></p>
+              <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                  <li><a href="#expenses">Expenses</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-xs-12">
+                <ng-view></ng-view>
+              </div>
+            </div>
+          </div>
+        
         </div>
-      </div>
-    </div>
-    
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-xs-12">
-          <ng-view></ng-view>
-        </div>
-      </div>
+
+      </ng-switch>
+
     </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
