@@ -1,5 +1,7 @@
 <h1 class="page-header">Expenses</h1>
 
+<input placeholder="Search" ng-model="search" class="form-control" q-clear-on-esc>
+
 <form id="expense-form" name="expenseForm" ng-submit="save(activeExpense)">
   <table class="table">
     <thead>
@@ -64,7 +66,7 @@
       </tr>
     </tbody>
     <tbody>
-      <tr ng-repeat="expense in expenses | orderBy:['-date', '-id']">
+      <tr ng-repeat="expense in expenses | filter:search | orderBy:['-date', '-id']">
         <td>{{expense.date}}</td>
         <td>{{expense.provider}}</td>
         <td>{{expense.amount}}</td>
