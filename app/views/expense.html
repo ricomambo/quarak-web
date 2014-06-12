@@ -1,4 +1,4 @@
-<h1 class="page-header">Expenses</h1>
+<h1 class="page-header">{{project.title}} <small>expenses</small></h1>
 
 <input placeholder="Search" ng-model="search" class="form-control" q-clear-on-esc>
 
@@ -10,6 +10,7 @@
         <th>Provider</th>
         <th>Amount</th>
         <th>Payer</th>
+        <th>Members</th>
         <th>Comments</th>
         <th>Category</th>
         <th></th>
@@ -18,14 +19,14 @@
     <tbody>
       <tr>
         <td>
-          <input 
+          <input
             placeholder="Date" 
             class="form-control"
             ng-model="activeExpense.date"
             required>
         </td>
         <td>
-          <input 
+          <input
             placeholder="Provider"
             class="form-control"
             ng-model="activeExpense.provider"
@@ -33,28 +34,38 @@
             required>
         </td>
         <td>
-          <input 
+          <input
             placeholder="Amount"
             class="form-control"
             ng-model="activeExpense.amount"
             required>
         </td>
         <td>
-          <input 
-            placeholder="Payer"
+          <select
+            ng-model="activeExpense.payer_id"
+            ng-options="member.id as member.name for member in project.members"
             class="form-control"
-            ng-model="activeExpense.payer"
             required>
+          </select>
         </td>
         <td>
-          <input 
+          <select
+            multiple="multiple"
+            ng-model="activeExpense.members"
+            ng-options="member.name for member in project.members"
+            class="form-control"
+            required>
+          </select>
+        </td>
+        <td>
+          <input
             placeholder="Comments"
             class="form-control"
             ng-model="activeExpense.comments"
             required>
         </td>
         <td>
-          <input 
+          <input
             placeholder="Category"
             class="form-control"
             ng-model="activeExpense.category"
@@ -70,7 +81,8 @@
         <td>{{expense.date}}</td>
         <td>{{expense.provider}}</td>
         <td>{{expense.amount}}</td>
-        <td>{{expense.payer}}</td>
+        <td>{{expense.payer.name}}</td>
+        <td>{{displayMembers(expense.members)}}</td>
         <td>{{expense.comments}}</td>
         <td>{{expense.category}}</td>
         <td><a href="" ng-click="remove(expense)"><span class="glyphicon glyphicon-remove"></span></a></td>

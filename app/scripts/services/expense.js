@@ -2,11 +2,13 @@
 
 angular.module('quarak')
   .factory('Expense', function Expense($resource) {
-    var Expense = $resource(
-      '/api/expenses/:id.json',
-      { id: '@id' },
-      { update: {
-        method: 'PUT' }
+    var Expense = $resource('/api/projects/:projectId/expenses/:id', {
+        id: '@id',
+        projectId: '@projectId'
+      }, {
+        update: {
+          method: 'PUT'
+        }
       }
     );
 
