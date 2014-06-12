@@ -23,7 +23,7 @@
     <![endif]-->
     <div ng-controller="MainCtrl">
 
-      <ng-switch on="currentUser.signedIn" ng-animate="'animate'">
+      <ng-switch on="Session.signedIn" ng-animate="'animate'">
 
         <div ng-switch-when="false" class="no-authenticated" ng-animate="'animate'">
 
@@ -56,10 +56,10 @@
                 </button>
                 <a class="navbar-brand" href="#">Quarak</a>
               </div>
-              <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">{{currentUser.email}}</a></p>
+              <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">{{Session.currentUser.name}}</a></p>
               <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                  <li><a href="#expenses">Expenses</a></li>
+                  <li><a href="#projects">Projects</a></li>
                 </ul>
               </div>
             </div>
@@ -114,6 +114,10 @@
         <script src="scripts/controllers/expense.js"></script>
         <script src="scripts/services/expense.js"></script>
         <script src="scripts/directives/q-clear-on-esc.js"></script>
+        <script src="scripts/services/session.js"></script>
+        <script src="scripts/services/auth-interceptor.js"></script>
+        <script src="scripts/services/project.js"></script>
+        <script src="scripts/controllers/project.js"></script>
         <!-- endbuild -->
 </body>
 </html>
