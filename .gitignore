@@ -4,3 +4,7 @@ dist
 .sass-cache
 app/bower_components
 .DS_Store
+.ruby-gemset
+.ruby-version
+quarak.sublime-project
+quarak.sublime-workspace
