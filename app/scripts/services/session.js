@@ -21,9 +21,9 @@ angular.module('quarak')
         var defer = $q.defer();
 
         $http
-          .post('/api/users/sign_in', {user: user})
+          .post('/api/sign_in', user)
           .success(function (data, status, headers, config) {
-            $window.sessionStorage.token = data.user.authentication_token;
+            $window.sessionStorage.token = data.token;
             service.requestCurrentUser().then(function currentUser(user) {
               defer.resolve(service.currentUser);
             });
