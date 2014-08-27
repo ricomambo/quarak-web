@@ -9,7 +9,7 @@ angular.module('quarak')
         element.on('keydown', function clearInput(event) {
           var key = event.which;
           scope.$apply(function applyClear() {
-            
+
             // ESC key
             if (key === 27) {
               ngModel.$setViewValue('');

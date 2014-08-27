@@ -1,14 +1,22 @@
 'use strict';
 
-describe('Directive: qClearOnEsc', function () {
+describe('Directive: qClearOnEsc', function() {
 
   // load the directive's module
   beforeEach(module('quarak'));
 
+  var PROFILE = {
+    'id': 1,
+    'email': 'ringo@test.com',
+    'name': 'Ringo Star',
+    'token': 'DYqP_Ofy2uEw1pIwYj-67g'
+  };
+
   var input,
-      form,
-      scope,
-      $compile;
+    form,
+    scope,
+    $compile,
+    $httpBackend;
 
   function compileInput(inputHtml) {
     input = angular.element(inputHtml);
@@ -18,8 +26,10 @@ describe('Directive: qClearOnEsc', function () {
     scope.$digest();
   }
 
-  beforeEach(inject(function($injector, $rootScope) {
+  beforeEach(inject(function($injector, $rootScope, _$httpBackend_) {
+    $httpBackend = _$httpBackend_;
     $compile = $injector.get('$compile');
+    $httpBackend.expectGET().respond(angular.copy(PROFILE));
     scope = $rootScope.$new();
   }));
 
@@ -33,7 +43,7 @@ describe('Directive: qClearOnEsc', function () {
     expect(scope.search).toBe('hola');
     expect(input.val()).toBe('hola');
 
-    var e = $.Event("keydown");
+    var e = angular.element.Event('keydown');
     e.which = 27;
     input.trigger(e);
 

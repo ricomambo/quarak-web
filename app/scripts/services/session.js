@@ -47,7 +47,7 @@ angular.module('quarak')
               service.signedIn = true;
               service.currentUser = user;
               defer.resolve(service.currentUser);
-            })
+            });
         }
         else {
           defer.resolve(service.currentUser);

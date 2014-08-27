@@ -3,7 +3,7 @@
 describe('Service: Project', function () {
 
   // load the service's module
-  beforeEach(module('quarakApp'));
+  beforeEach(module('quarak'));
 
   // instantiate service
   var Project;
