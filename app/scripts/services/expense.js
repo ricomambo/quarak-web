@@ -2,7 +2,7 @@
 
 angular.module('quarak')
   .factory('Expense', function Expense($resource) {
-    var Expense = $resource('/api/projects/:projectId/expenses/:id', {
+    var Expense = $resource('http://quarak.herokuapp.com/api/projects/:projectId/expenses/:id', {
         id: '@id',
         projectId: '@projectId'
       }, {

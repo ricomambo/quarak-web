@@ -21,7 +21,7 @@ angular.module('quarak')
         var defer = $q.defer();
 
         $http
-          .post('/api/sign_in', user)
+          .post('http://quarak.herokuapp.com/api/sign_in', user)
           .success(function (data, status, headers, config) {
             $window.sessionStorage.token = data.token;
             service.requestCurrentUser().then(function currentUser(user) {
@@ -42,7 +42,7 @@ angular.module('quarak')
         var defer = $q.defer();
         if (!service.signedIn) {
           $http
-            .get('/api/profile')
+            .get('http://quarak.herokuapp.com/api/profile')
             .success(function profile(user) {
               service.signedIn = true;
               service.currentUser = user;
