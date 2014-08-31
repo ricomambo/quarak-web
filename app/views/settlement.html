@@ -1,0 +1,64 @@
+<h1 class="page-header">{{project.title}} <small>settlements</small></h1>
+<!--<input placeholder="Search" ng-model="search" class="form-control" q-clear-on-esc>-->
+
+<form id="settlement-form" name="settlementForm" ng-submit="save(activeSettlement)">
+  <table class="table">
+    <thead>
+      <tr>
+        <!--<th>Date</th>-->
+        <th>Payer</th>
+        <th>Payee</th>
+        <th>Amount</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <!--<td>-->
+          <!--<input-->
+            <!--placeholder="Date"-->
+            <!--class="form-control"-->
+            <!--ng-model="activeSettlement.date"-->
+            <!--required>-->
+        <!--</td>-->
+        <td>
+          <select
+            placeholder="Payer"
+            class="form-control"
+            ng-model="activeSettlement.payer_id"
+            ng-options="member.id as member.name for member in project.members"
+            autofocus
+            required>
+        </td>
+        <td>
+          <select
+            placeholder="Payee"
+            class="form-control"
+            ng-model="activeSettlement.payee_id"
+            ng-options="member.id as member.name for member in project.members"
+            autofocus
+            required>
+        </td>
+        <td>
+          <input
+            placeholder="Amount"
+            class="form-control"
+            ng-model="activeSettlement.amount"
+            required>
+        </td>
+        <td>
+          <button class="btn btn-primary" type="submit" ng-disabled="expenseForm.$invalid">Save</button>
+        </td>
+      </tr>
+    </tbody>
+    <tbody>
+      <tr ng-repeat="settlement in settlements | orderBy:['-date', '-id']">
+        <!--<td>{{settlement.date}}</td>-->
+        <td>{{settlement.payer.name}}</td>
+        <td>{{settlement.payee.name}}</td>
+        <td>{{settlement.amount}}</td>
+        <td><a href="" ng-click="remove(settlement)"><span class="glyphicon glyphicon-remove"></span></a></td>
+      </tr>
+    </tbody>
+  </table>
+</form>

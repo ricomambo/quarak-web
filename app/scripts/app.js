@@ -21,6 +21,10 @@ angular
         templateUrl: 'views/expense.html',
         controller: 'ExpenseCtrl'
       })
+      .when('/projects/:projectId/settlements', {
+        templateUrl: 'views/settlement.html',
+        controller: 'SettlementCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
