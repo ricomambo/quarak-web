@@ -20,7 +20,7 @@
       <tr>
         <td>
           <input
-            placeholder="Date" 
+            placeholder="Date"
             class="form-control"
             ng-model="activeExpense.date"
             required>
@@ -52,7 +52,7 @@
           <select
             multiple="multiple"
             ng-model="activeExpense.members"
-            ng-options="member.name for member in project.members"
+            ng-options="member.name for member in project.members | filter: {active: 'true'}"
             class="form-control"
             required>
           </select>

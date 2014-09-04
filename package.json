@@ -1,6 +1,10 @@
 {
   "name": "quarakweb",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ricomambo/quarak-web.git"
+  },
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.5",

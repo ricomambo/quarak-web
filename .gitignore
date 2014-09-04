@@ -8,3 +8,4 @@ app/bower_components
 .ruby-version
 quarak.sublime-project
 quarak.sublime-workspace
+.nvmrc
