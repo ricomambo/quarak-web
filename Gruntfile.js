@@ -214,7 +214,7 @@ module.exports = function (grunt) {
             '<%= yeoman.dist %>/scripts/{,*/}*.js',
             '<%= yeoman.dist %>/styles/{,*/}*.css',
             '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-            '<%= yeoman.dist %>/styles/fonts/*'
+            //'<%= yeoman.dist %>/styles/fonts/*' fonts don't change
           ]
         }
       }
@@ -336,6 +336,12 @@ module.exports = function (grunt) {
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/images',
           src: ['generated/*']
+        }, {
+          expand: true,
+          cwd: '<%= yeoman.app %>',
+          dest: '<%= yeoman.dist %>/styles/fonts',
+          flatten: true,
+          src: ['bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/*']
         }]
       },
       styles: {
@@ -393,6 +399,17 @@ module.exports = function (grunt) {
         configFile: 'karma.conf.js',
         singleRun: false
       }
+    },
+
+    replace: {
+      bower_css: {
+        src: ['<%= yeoman.dist %>/styles/*.css'], // includes files in dir
+        overwrite: true,
+        replacements: [{
+          from: '/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap',
+          to: '/styles/fonts'
+        }]
+      }
     }
   });
 
@@ -440,7 +457,8 @@ module.exports = function (grunt) {
     'uglify',
     'rev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+    'replace'
   ]);
 
   grunt.registerTask('default', [
@@ -450,4 +468,5 @@ module.exports = function (grunt) {
   ]);
 
   grunt.loadNpmTasks('grunt-connect-proxy');
+  grunt.loadNpmTasks('grunt-text-replace');
 };
