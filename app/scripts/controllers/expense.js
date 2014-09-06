@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('quarak')
-  .controller('ExpenseCtrl', ['$scope', '$routeParams', 'Expense', 'Project', 'Session',
-    function($scope, $routeParams, Expense, Project, Session) {
+  .controller('ExpenseCtrl', ['$scope', '$routeParams', 'Expense', 'Project', 'Balance', 'Session',
+    function($scope, $routeParams, Expense, Project, Balance, Session) {
 
       $scope.expenses = null;
 
@@ -54,6 +54,9 @@ angular.module('quarak')
           id: $routeParams.projectId
         });
         $scope.expenses = Expense.query({
+          projectId: $routeParams.projectId
+        });
+        $scope.balances = Balance.query({
           projectId: $routeParams.projectId
         });
       })();
