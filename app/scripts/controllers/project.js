@@ -1,14 +1,18 @@
 'use strict';
 
 angular.module('quarak')
-  .controller('ProjectCtrl', ['$scope', 'Project',
-    function($scope, Project) {
-      $scope.projects = Project.query();
-
-      $scope.remove = function remove(project) {
-        var index = $scope.projects.indexOf(project);
-        $scope.projects.splice(index, 1);
-        project.$remove();
-      }
+  .controller('ProjectCtrl', ['$scope', '$routeParams', 'Expense', 'Project', 'Session',
+    function($scope, $routeParams, Expense, Project, Balance, Session) {
+      (function init() {
+        $scope.project = Project.get({
+          id: $routeParams.projectId
+        });
+        $scope.expenses = Expense.query({
+          projectId: $routeParams.projectId
+        });
+        $scope.balances = Balance.query({
+          projectId: $routeParams.projectId
+        });
+      })();
     }
   ]);

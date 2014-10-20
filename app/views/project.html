@@ -1,19 +1,41 @@
-<h1 class="page-header">Projects</h1>
-<table class="table">
-<thead>
-  <tr>
-    <th>Title</th>
-    <th>Members</th>
-    <th></th>
-  </tr>
-</thead>
-<tbody>
-  <tr ng-repeat="project in projects">
-    <td><a ng-href="#/projects/{{project.id}}/expenses">{{project.title}}</a></td>
-    <td >
-      <span ng-repeat="member in project.members"> {{member.name + ","}} </span>
-    </td>
-    <td><a href="" ng-click="remove(project)"><span class="glyphicon glyphicon-remove"></span></a></td>
-  </tr>
-</tbody>
-</table>
+<h1 class="page-header">{{project.title}}</h1>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Balance</div>
+      <!-- <div class="panel-body"> -->
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="balance in balances" ng-class="{'list-group-item-success': balance.balance >= 0, 'list-group-item-danger': balance.balance < 0}"> 
+            {{balance.member.name}}<span class="pull-right balance-amount">{{balance.balance | currency}}</span>
+          </li>
+        </ul>
+      <!-- </div> -->
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Last expenses</div>
+      <div class="panel-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Category</th>
+              <th>Amount</th>
+              <th>Payer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="expense in expenses | filter:search | orderBy:['-date', '-id'] | limitTo:5">
+              <td nowrap="true">{{expense.date}}</td>
+              <td>{{expense.category}}</td>
+              <td>{{expense.amount}}</td>
+              <td>{{expense.payer.name}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
