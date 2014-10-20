@@ -2,6 +2,7 @@
 
 angular
   .module('quarak', [
+    'ui.gravatar',
     'ngCookies',
     'ngResource',
     'ngSanitize',

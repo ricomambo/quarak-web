@@ -56,6 +56,7 @@
                 </button>
                 <a class="navbar-brand" href="#">Quarak</a>
               </div>
+              <div class="navbar-right"><img gravatar-src-once="Session.currentUser.email" gravatar-size="50"></div>
               <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">{{Session.currentUser.name}}</a></p>
               <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -116,6 +117,8 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+    <script src="bower_components/angular-gravatar/build/md5.js"></script>
+    <script src="bower_components/angular-gravatar/build/angular-gravatar.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
