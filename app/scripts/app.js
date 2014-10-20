@@ -6,7 +6,9 @@ angular
     'ngCookies',
     'ngResource',
     'ngSanitize',
-    'ngRoute'
+    'ngRoute',
+    'ui.bootstrap',
+    'ui.utils'
   ])
 
   .config(['$routeProvider', function ($routeProvider) {
@@ -15,6 +17,10 @@ angular
         templateUrl: 'views/main.html'
       })
       .when('/projects', {
+        templateUrl: 'views/projects.html',
+        controller: 'ProjectsCtrl'
+      })
+      .when('/projects/:projectId', {
         templateUrl: 'views/project.html',
         controller: 'ProjectCtrl'
       })
