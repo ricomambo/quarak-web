@@ -1,8 +1,25 @@
 'use strict';
 
+// FIXME: This controller is already too long!
+//  Need to create services to move logic out of here
+//  Too many dependencies
 angular.module('quarak')
-  .controller('ExpenseCtrl', ['$scope', '$routeParams', 'Expense', 'Project', 'Balance', 'Session',
-    function($scope, $routeParams, Expense, Project, Balance, Session) {
+  .controller('ExpenseCtrl', [
+    '$scope',
+    '$routeParams',
+    'Expense',
+    'Project',
+    'Balance',
+    'Session',
+    '$window',
+    function(
+      $scope,
+      $routeParams,
+      Expense,
+      Project,
+      Balance,
+      Session,
+      $window) {
 
       $scope.expenses = null;
 
@@ -38,20 +55,28 @@ angular.module('quarak')
       }
 
       $scope.remove = function remove(expense) {
-        var index = $scope.expenses.indexOf(expense);
-        $scope.expenses.splice(index, 1);
-        expense.$remove();
+
+        // FIXME: Move this string to the view, or somewhere else
+        var deleteExpense = $window.confirm('Are you absolutely sure you want to delete?');
+
+        if (deleteExpense) {
+          var index = $scope.expenses.indexOf(expense);
+          $scope.expenses.splice(index, 1);
+          expense.$remove();
+        }
       }
 
       $scope.displayMembers = function displayMembers(members) {
         return members.map(function eachMember(member) {
-          return member.name
+          return member.name;
         }).join(', ');
       };
 
       (function init() {
         $scope.project = Project.get({
           id: $routeParams.projectId
+        }).$promise.then(function () {
+          $scope.activeExpense.members = $scope.project.members;
         });
         $scope.expenses = Expense.query({
           projectId: $routeParams.projectId

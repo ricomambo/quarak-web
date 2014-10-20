@@ -8,6 +8,12 @@ angular.module('quarak')
       }, {
         update: {
           method: 'PUT'
+        },
+        remove: {
+          method: 'DELETE',
+          params: {
+            projectId: '@project_id'
+          }
         }
       }
     );
