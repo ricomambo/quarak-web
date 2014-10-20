@@ -38,11 +38,8 @@ angular.module('quarak')
         delete expense.members;
 
         if (!_.include($scope.expenses, expense)) {
-          $scope.expenses.push(expense);
           expense.$save().then(function saved() {
-            $scope.expenses = Expense.query({
-              projectId: $routeParams.projectId
-            });
+            $scope.expenses.push(expense);
           });
         } else {
           Expense.update(expense);
@@ -50,7 +47,8 @@ angular.module('quarak')
         $scope.activeExpense = new Expense({
           date: new Date(),
           projectId: $routeParams.projectId,
-          payer_id: Session.currentUser.id
+          payer_id: Session.currentUser.id,
+          members: $scope.project.members
         });
       }
 
@@ -73,10 +71,11 @@ angular.module('quarak')
       };
 
       (function init() {
-        $scope.project = Project.get({
+        Project.get({
           id: $routeParams.projectId
-        }).$promise.then(function () {
-          $scope.activeExpense.members = $scope.project.members;
+        }).$promise.then(function projectLoaded(project) {
+          $scope.project = project;
+          $scope.activeExpense.members = project.members;
         });
         $scope.expenses = Expense.query({
           projectId: $routeParams.projectId

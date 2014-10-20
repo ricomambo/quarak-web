@@ -19,6 +19,8 @@ module.exports = function(config) {
       'app/bower_components/angular-sanitize/angular-sanitize.js',
       'app/bower_components/angular-route/angular-route.js',
       'app/bower_components/lodash/dist/lodash.compat.js',
+      'app/bower_components/angular-gravatar/build/md5.js',
+      'app/bower_components/angular-gravatar/build/angular-gravatar.js',
       'app/scripts/*.js',
       'app/scripts/**/*.js',
       'test/mock/**/*.js',
