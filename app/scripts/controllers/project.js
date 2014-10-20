@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('quarak')
-  .controller('ProjectCtrl', ['$scope', '$routeParams', 'Expense', 'Project', 'Session',
+  .controller('ProjectCtrl', ['$scope', '$routeParams', 'Expense', 'Project', 'Balance', 'Session',
     function($scope, $routeParams, Expense, Project, Balance, Session) {
       (function init() {
         $scope.project = Project.get({

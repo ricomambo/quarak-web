@@ -49,16 +49,6 @@
         </form>
       </div>
     </div>
-    <div class="panel panel-primary">
-      <div class="panel-heading">Balance</div>
-      <!-- <div class="panel-body"> -->
-        <ul class="list-group">
-          <li class="list-group-item" ng-repeat="balance in balances" ng-class="{'list-group-item-success': balance.balance >= 0, 'list-group-item-danger': balance.balance < 0}"> 
-            {{balance.member.name}}<span class="pull-right balance-amount">{{balance.balance | currency}}</span>
-          </li>
-        </ul>
-      <!-- </div> -->
-    </div>
   </div>
   <div class="col-md-9">
     <h3>Expenses</h3>  
