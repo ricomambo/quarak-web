@@ -10,8 +10,18 @@ angular.module('quarak')
       // Is user already authenticated?
       signedIn: false,
 
+      // logout
+      logout: function() {
+        return $http['delete']('/api/sign_out')
+          .success(function (data, status, headers, config) {
+            delete $window.sessionStorage.token;
+            service.signedIn = false;
+            service.currentUser = null;
+          });
+      },
+
       // Authenticate user
-      login: function login(email, password) {
+      login: function(email, password) {
 
         var user = {
           email: email,
@@ -38,7 +48,7 @@ angular.module('quarak')
         return defer.promise;
       },
 
-      requestCurrentUser: function requestCurrentUser() {
+      requestCurrentUser: function() {
         var defer = $q.defer();
         if (!service.signedIn) {
           $http

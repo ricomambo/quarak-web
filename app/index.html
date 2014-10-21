@@ -33,9 +33,6 @@
               <h2 class="form-signin-heading">Please sign in</h2>
               <input type="email" class="form-control" placeholder="Email address" required="" autofocus ng-model="user.email" name="user_email">
               <input type="password" class="form-control" placeholder="Password" required="" ng-model="user.password" name="user_password">
-              <label class="checkbox">
-                <input type="checkbox" value="remember-me" ng-model="user.remember"> Remember me
-              </label>
               <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
             </form>
 
@@ -57,7 +54,7 @@
                 <a class="navbar-brand" href="#">Quarak</a>
               </div>
               <div class="navbar-right"><img gravatar-src-once="Session.currentUser.email" gravatar-size="50" gravatar-default="mm"></div>
-              <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">{{Session.currentUser.name}}</a></p>
+              <p class="navbar-text navbar-right">Signed in as {{Session.currentUser.name}} <a href="#" ng-click="signOut()" class="navbar-link">×</a></p>
               <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                   <li><a href="#projects">Projects</a></li>
