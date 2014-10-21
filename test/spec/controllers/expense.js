@@ -135,7 +135,6 @@ describe('Controller: ExpenseCtrl', function() {
     $httpBackend.expectGET('/api/profile').respond(angular.copy(PROFILE));
     $httpBackend.expectGET('/api/projects/1').respond(angular.copy(PROJECT));
     $httpBackend.expectGET('/api/projects/1/expenses').respond(angular.copy(EXPENSES));
-    $httpBackend.expectGET('/api/projects/1/balance').respond(angular.copy(BALANCES));
 
     ExpenseCtrl = $controller('ExpenseCtrl', {
       $scope: scope
@@ -145,7 +144,6 @@ describe('Controller: ExpenseCtrl', function() {
 
   it('should fetch expenses', function() {
     expect(scope.expenses.length).toBe(1);
-    expect(scope.balances.length).toBe(3);
     expect(scope.activeExpense.members.length).toBe(3);
   });
 

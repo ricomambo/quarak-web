@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Controller: ProjectCtrl', function() {
+describe('Controller: ProjectsCtrl', function() {
 
   // load the controller's module
   beforeEach(module('quarak'));
@@ -12,7 +12,7 @@ describe('Controller: ProjectCtrl', function() {
     'token': 'DYqP_Ofy2uEw1pIwYj-67g'
   };
 
-  var ProjectCtrl,
+  var ProjectsCtrl,
     scope,
     $httpBackend,
     $routeParams;
@@ -56,7 +56,7 @@ describe('Controller: ProjectCtrl', function() {
     scope = $rootScope.$new();
     $httpBackend.expectGET('/api/profile').respond(angular.copy(PROFILE));
     $httpBackend.expectGET('/api/projects').respond(angular.copy(PROJECT_LIST));
-    ProjectCtrl = $controller('ProjectCtrl', {
+    ProjectsCtrl = $controller('ProjectsCtrl', {
       $scope: scope
     });
     scope.$apply();
