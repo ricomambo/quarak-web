@@ -50,7 +50,12 @@ angular.module('quarak')
               date: new Date(),
               projectId: $routeParams.projectId,
               payer_id: Session.currentUser.id,
-              members: $scope.project.members
+
+              // FIXME: Move this code to a service
+              members: $scope.project.members.
+                filter(function each(member) {
+                  return member.active;
+                })
             });
           });
         } else {
@@ -81,7 +86,10 @@ angular.module('quarak')
           id: $routeParams.projectId
         }).$promise.then(function projectLoaded(project) {
           $scope.project = project;
-          $scope.activeExpense.members = project.members;
+          $scope.activeExpense.members = project.members.
+            filter(function each(member) {
+              return member.active;
+            });
         });
         $scope.expenses = Expense.query({
           projectId: $routeParams.projectId

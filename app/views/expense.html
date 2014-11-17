@@ -73,7 +73,7 @@
             <select
               id="payer"
               ng-model="activeExpense.payer_id"
-              ng-options="member.id as member.name for member in project.members"
+              ng-options="member.id as member.name for member in project.members | filter: {active: 'true'}"
               class="form-control"
               required>
             </select>

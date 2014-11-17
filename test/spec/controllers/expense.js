@@ -17,98 +17,104 @@ describe('Controller: ExpenseCtrl', function() {
     'title': 'First Project',
     'members': [{
       'id': 1,
-      'name': 'John Lennon'
+      'name': 'John Lennon',
+      'active': true
     }, {
       'id': 2,
-      'name': 'Ringo Star'
+      'name': 'Ringo Star',
+      'active': true
     }, {
       'id': 3,
-      'name': 'George Harrison'
+      'name': 'George Harrison',
+      'active': false
     }]
   };
 
   var EXPENSES = [{
-    "id": 1,
-    "project_id": 1,
-    "date": "2014-03-25",
-    "category": "Supermarket",
-    "provider": "Walmart",
-    "amount": 745.24,
-    "comments": "Sample expense",
-    "payer": {
-      "id": 2,
-      "name": "Ringo Star"
+    'id': 1,
+    'project_id': 1,
+    'date': '2014-03-25',
+    'category': 'Supermarket',
+    'provider': 'Walmart',
+    'amount': 745.24,
+    'comments': 'Sample expense',
+    'payer': {
+      'id': 2,
+      'name': 'Ringo Star'
     },
-    "members": [{
-      "id": 1,
-      "name": "John Lennon"
+    'members': [{
+      'id': 1,
+      'name': 'John Lennon',
+      'active': true
     }, {
-      "id": 2,
-      "name": "Ringo Star"
+      'id': 2,
+      'name': 'Ringo Star',
+      'active': true
     }, {
-      "id": 3,
-      "name": "George Harrison"
+      'id': 3,
+      'name': 'George Harrison',
+      'active': false
     }]
   }];
 
   var NEW_EXPENSE = {
-    "id":11,
-    "date":"2014-08-27",
-    "category":"Varios",
-    "provider":"El Cholito",
-    "amount":"1000.0",
-    "comments":"Coca y puchos",
-    "payer":{
-      "id":2,
-      "name":"Ringo Star"
+    'id':11,
+    'date':'2014-08-27',
+    'category':'Varios',
+    'provider':'El Cholito',
+    'amount':'1000.0',
+    'comments':'Coca y puchos',
+    'payer':{
+      'id':2,
+      'name':'Ringo Star'
     },
-    "members":[
+    'members':[
       {
-        "id":2,
-        "name":"Ringo Star",
-        "active":true
+        'id':2,
+        'name':'Ringo Star',
+        'active':true
       },
       {
-        "id":3,
-        "name":"George Harrison",
-        "active":true
+        'id':3,
+        'name': 'Ringo Star',
+        'active': true
       }
     ]
   };
 
   var BALANCES = [{
-      "member": {
-        "id": 1,
-        "name": "John Lennon",
-        "active": true
+      'member': {
+        'id': 1,
+        'name': 'John Lennon',
+        'active': true
       },
-      "expenses": "248.413333333333333333333333333",
-      "payments": "0.0",
-      "paid_settlements": "0.0",
-      "received_settlements": "0.0",
-      "balance": "-248.413333333333333333333333333"
+      'expenses': '248.413333333333333333333333333',
+      'payments': '0.0',
+      'paid_settlements': '0.0',
+      'received_settlements': '0.0',
+      'balance': '-248.413333333333333333333333333'
     }, {
-      "member": {
-        "id": 2,
-        "name": "Ringo Star",
-        "active": true
+      'member': {
+        'id': 2,
+        'name': 'Ringo Star',
+        'active': true
       },
-      "expenses": "248.413333333333333333333333333",
-      "payments": "745.24",
-      "paid_settlements": "0.0",
-      "received_settlements": "0.0",
-      "balance": "496.826666666666666666666666667"
+      'expenses': '248.413333333333333333333333333',
+      'payments': '745.24',
+      'paid_settlements': '0.0',
+      'received_settlements': '0.0',
+      'balance': '496.826666666666666666666666667'
     }, {
-      "member": {
-        "id": 3,
-        "name": "George Harrison",
-        "active": true
+      'member': {
+        'id': 3,
+        'name': 'George Harrison',
+        'active': false
       },
-      "expenses": "248.413333333333333333333333333",
-      "payments": "0.0",
-      "paid_settlements": "0.0",
-      "received_settlements": "0.0",
-      "balance": "-248.413333333333333333333333333"
+      'expenses': '248.413333333333333333333333333',
+      'payments': '0.0',
+      'paid_settlements': '0.0',
+      'received_settlements': '0.0',
+      'balance': '-248.413333333333333333333333333'
     }];
 
   var ExpenseCtrl,
@@ -144,7 +150,7 @@ describe('Controller: ExpenseCtrl', function() {
 
   it('should fetch expenses', function() {
     expect(scope.expenses.length).toBe(1);
-    expect(scope.activeExpense.members.length).toBe(3);
+    expect(scope.activeExpense.members.length).toBe(2);
   });
 
   it('should save expenses', function() {
@@ -154,10 +160,12 @@ describe('Controller: ExpenseCtrl', function() {
     scope.activeExpense.amount = '1000';
     scope.activeExpense.members = [{
       id: 2,
-      name: 'Ringo Star'
+      name: 'Ringo Star',
+      active: true
     }, {
-      id: 3,
-      name: 'George Harrison'
+      id: 1,
+      name: 'John Lennon',
+      active: true
     }];
     scope.activeExpense.payer = {
       id: 2,
@@ -167,18 +175,18 @@ describe('Controller: ExpenseCtrl', function() {
     scope.save(scope.activeExpense);
 
     $httpBackend.expectPOST('/api/projects/1/expenses', {
-      "date":"2014-08-27",
-      "projectId":1,
-      "payer_id":1,
-      "category":"Varios",
-      "comments":"Coca y puchos",
-      "amount":"1000",
-      "payer":{
-        "id":2,
-        "name":"Ringo Star"
+      'date':'2014-08-27',
+      'projectId':1,
+      'payer_id':1,
+      'category':'Varios',
+      'comments':'Coca y puchos',
+      'amount':'1000',
+      'payer':{
+        'id':2,
+        'name':'Ringo Star'
       },
-      "provider":"El Cholito",
-      "member_ids":[2,3]
+      'provider':'El Cholito',
+      'member_ids':[2,1]
     }).respond(angular.copy(NEW_EXPENSE));
     $httpBackend.flush();
 
