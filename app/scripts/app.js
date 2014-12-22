@@ -8,7 +8,8 @@ angular
     'ngSanitize',
     'ngRoute',
     'ui.bootstrap',
-    'ui.utils'
+    'ui.utils',
+    'angularCharts'
   ])
 
   .config(['$routeProvider', function ($routeProvider) {

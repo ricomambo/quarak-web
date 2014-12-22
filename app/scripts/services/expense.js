@@ -6,6 +6,20 @@ angular.module('quarak')
         id: '@id',
         projectId: '@projectId'
       }, {
+        by_month: {
+          url: '/api/projects/:projectId/expenses_by_month',
+          method: 'GET',
+          params: {
+            projectId: '@projectId'
+          }
+        },
+        by_category: {
+          url: '/api/projects/:projectId/expenses_by_category',
+          method: 'GET',
+          params: {
+            projectId: '@projectId'
+          }
+        },
         update: {
           method: 'PUT'
         },
