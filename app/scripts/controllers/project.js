@@ -23,7 +23,7 @@ angular.module('quarak')
             count++;
             sum += Math.ceil(parseInt(amount))
             data.push({
-              x: month.substring(5, 7),
+              x: month.substring(0, 7),
               y: [Math.ceil(parseInt(amount)), Math.ceil(sum / count)]
             })
           });

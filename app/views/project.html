@@ -1,16 +1,32 @@
 <h1 class="page-header">{{project.title}}</h1>
 
 <div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Expenses by month</div>
+      <div class="panel-body">
+        <div ac-chart="'line'" ac-data="monthChartData" ac-config="monthChartConfig" id='monthChart' class='chart'></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
   <div class="col-md-4">
     <div class="panel panel-primary">
       <div class="panel-heading">Balance</div>
-      <!-- <div class="panel-body"> -->
-        <ul class="list-group">
-          <li class="list-group-item" ng-repeat="balance in balances" ng-class="{'list-group-item-success': balance.balance >= 0, 'list-group-item-danger': balance.balance < 0}"> 
-            {{balance.member.name}}<span class="pull-right balance-amount">{{balance.balance | currency}}</span>
-          </li>
-        </ul>
-      <!-- </div> -->
+      <ul class="list-group">
+        <li class="list-group-item" ng-repeat="balance in balances" ng-class="{'list-group-item-success': balance.balance >= 0, 'list-group-item-danger': balance.balance < 0}"> 
+          {{balance.member.name}}<span class="pull-right balance-amount">{{balance.balance | currency}}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Expenses by category</div>
+      <div class="panel-body">
+        <div ac-chart="'pie'" ac-data="categoryChartData" ac-config="categoryChartConfig" id='categoryChart' class='chart'></div>
+      </div>
     </div>
   </div>
   <div class="col-md-4">
@@ -44,22 +60,4 @@
       </div>
     </div>
   </div>
-  <div class="col-md-4">
-    <div class="panel panel-primary">
-      <div class="panel-heading">Expenses by month</div>
-      <div class="panel-body">
-        <div ac-chart="'line'" ac-data="monthChartData" ac-config="monthChartConfig" id='monthChart' class='chart'></div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-4">
-    <div class="panel panel-primary">
-      <div class="panel-heading">Expenses by category</div>
-      <div class="panel-body">
-        <div ac-chart="'pie'" ac-data="categoryChartData" ac-config="categoryChartConfig" id='categoryChart' class='chart'></div>
-      </div>
-    </div>
-  </div>
-</div>
+</div> 
