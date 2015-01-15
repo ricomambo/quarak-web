@@ -2,7 +2,7 @@
 
 angular.module('quarak')
   .factory('Settlement', function Settlement($resource) {
-    var Settlement = $resource('/api/projects/:projectId/settlements/:id', {
+    var Settlement = $resource('http://quarak.herokuapp.com/api/projects/:projectId/settlements/:id', {
         id: '@id',
         projectId: '@projectId'
       }, {
