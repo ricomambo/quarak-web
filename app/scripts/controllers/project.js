@@ -8,7 +8,8 @@ angular.module('quarak')
           id: $routeParams.projectId
         });
         $scope.expenses = Expense.query({
-          projectId: $routeParams.projectId
+          projectId: $routeParams.projectId,
+          limit: 5
         });
         $scope.balances = Balance.query({
           projectId: $routeParams.projectId
