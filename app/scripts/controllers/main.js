@@ -5,10 +5,12 @@ angular.module('quarak')
       '$scope',
       'Session',
       '$window',
+      'Project',
     function(
       $scope,
       Session,
-      $window) {
+      $window,
+      Project) {
 
     $scope.Session = Session;
 
@@ -19,5 +21,7 @@ angular.module('quarak')
     $scope.signOut = function() {
       Session.logout();
     };
+
+    $scope.projects = Project.query();
   }])
 ;

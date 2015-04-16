@@ -17,10 +17,6 @@ angular
       .when('/', {
         templateUrl: 'views/main.html'
       })
-      .when('/projects', {
-        templateUrl: 'views/projects.html',
-        controller: 'ProjectsCtrl'
-      })
       .when('/projects/:projectId', {
         templateUrl: 'views/project.html',
         controller: 'ProjectCtrl'
