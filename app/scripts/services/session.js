@@ -43,6 +43,7 @@ angular.module('quarak')
             delete $window.sessionStorage.token;
             service.signedIn = false;
             service.currentUser = null;
+            defer.reject();
           });
 
         return defer.promise;

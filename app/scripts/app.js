@@ -29,6 +29,10 @@ angular
         templateUrl: 'views/settlement.html',
         controller: 'SettlementCtrl'
       })
+      .when('/profile', {
+        templateUrl: 'views/profile.html',
+        controller: 'ProfileCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

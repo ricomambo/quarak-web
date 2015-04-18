@@ -5,7 +5,6 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 // bower:scss
 // endbower
 
-@import 'signin';
 @import 'project';
 
 .browsehappy {
@@ -17,7 +16,7 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 
 /* Space out content a bit */
 body {
-    padding-top: 20px;
+    padding-top: 70px;
     padding-bottom: 20px;
 }
 
@@ -110,4 +109,26 @@ body {
 }
 .navbar-inverse {
   box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+}
+
+.page-header {
+    margin-top: 0px;
+}
+
+.logo {
+    padding: 50px 0px 50px 0px;
+    img {
+        width: 100%;
+    }
+}
+
+.messages {
+    padding: 15px 15px 15px 15px;
+}
+
+.navbar-brand {
+    padding-top: 10px;
+    img {
+        width: 40px;
+    }
 }
