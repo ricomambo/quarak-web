@@ -43,6 +43,6 @@ angular
   }])
 
   .run(['Session', function(Session) {
-    Session.requestCurrentUser();
+    Session.setCurrentUser();
   }])
 ;

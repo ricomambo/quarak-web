@@ -13,9 +13,13 @@
 <div class="row">
   <div class="col-md-4">
     <div class="panel panel-primary">
-      <div class="panel-heading">Balance</div>
+      <div class="panel-heading">Balance
+        <div class="pull-right">
+          only active members <input type="checkbox" ng-model="onlyActive">
+        </div>
+      </div>
       <ul class="list-group">
-        <li class="list-group-item" ng-repeat="balance in balances | orderBy:'-balance'" ng-class="{'list-group-item-success': balance.balance >= 0, 'list-group-item-danger': balance.balance < 0}">
+        <li class="list-group-item" ng-repeat="balance in balances | filter:filterByActive | orderBy:'-balance'" ng-class="{'list-group-item-success': balance.balance >= 0, 'list-group-item-danger': balance.balance < 0}">
           {{balance.member.name}}<span class="pull-right balance-amount">{{balance.balance | currency}}</span>
         </li>
       </ul>
@@ -31,7 +35,11 @@
   </div>
   <div class="col-md-4">
     <div class="panel panel-primary">
-      <div class="panel-heading">Last expenses</div>
+      <div class="panel-heading">Last expenses
+        <div class="pull-right">
+          only own expenses <input type="checkbox" ng-model="onlyOwnExpenses">
+        </div>
+      </div>
       <div class="panel-body">
         <table class="table">
           <thead>
@@ -43,7 +51,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="expense in expenses | filter:search | orderBy:['-date', '-id'] | limitTo:5">
+            <tr ng-repeat="expense in expenses | filter:filterByOwn | orderBy:['-date', '-id'] | limitTo:5">
               <td nowrap="true">{{expense.date}}</td>
               <td>{{expense.category}}</td>
               <td>{{expense.amount}}</td>
